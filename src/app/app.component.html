@@ -1,18 +1,32 @@
 <div > Fernando
-
+  <app-menu-superior></app-menu-superior>
   <div *ngIf="variable"> Texto con if</div>  
 
   <button (click)="obtenerListado()" *ngIf="listado">Ocultar</button>
   <button (click)="obtenerListado()" *ngIf="!listado">Mostrar</button>
+<div> 
+  Nombre: <input [(ngModel)]="nombreCasa" id="example-model" (keyup.enter)="altaCasa()">
+  Precio: <input [(ngModel)]="precioCasa" id="example-model" type="number">
+  Imagen: <input [(ngModel)]="imagenCasa" id="example-model">
+  <button (click)="altaCasa()"> Alta de casa </button>
+</div>
   
   <div *ngIf="listado">
-    <div *ngFor="let casa of casas" >
-      {{casa.nombre}}
-      {{casa.precio}}
-    </div>
-      <!-- <img src="{{casa.img}}"> -->
+    <div *ngFor="let casa of casas; let posicion=index" >
+      <app-detalle [casa]="casa"> </app-detalle>
+      <button (click)="borrar(posicion)">Borrar</button>
+
       <!-- <button (click)="detalle()">Save</button> -->
+    </div>
   </div>
+
+  <!-- <a routerLink="/"> Inicio</a> -->
+  <a routerLink="/menu"> Hola</a>
+  <a routerLink="/rutaPrivada/32"> Ruta Privada</a>
+
+  <router-outlet></router-outlet>
+
+  <!-- <app-detalle casa="Fernando"> </app-detalle> -->
   
 
   <app-casa *ngFor="let nombre in casas"></app-casa>
